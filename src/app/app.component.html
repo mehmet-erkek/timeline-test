@@ -1,2 +1,14 @@
 <h1>vis-timeline</h1>
-<div #timeline></div>
+<div id="visualization" #timeline></div>
+
+
+<p style="max-width: 800px">
+    This example shows how to use callback functions <code>onAdd</code>,
+    <code>onMove</code>, <code>onMoving</code>, <code>onUpdate</code>, and
+    <code>onRemove</code>. The <code>onMoving</code> function updates an item
+    while dragging, and can be used to prevent the item from being drawn at
+    disallowed or infeasible timeslots. In this example, the items cannot be moved
+    outside of the month April 2013. The other callback functions are called after
+    an add, move, update, or remove action has taken place, and can be used to
+    cancel these actions.
+  </p>

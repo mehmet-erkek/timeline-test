@@ -23,24 +23,24 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timeline = new Timeline(this.timelineContainer.nativeElement, this.groups, this.data, this.options);
+    this.timeline = new Timeline(this.timelineContainer.nativeElement, this.data, this.groups, this.options);
     this.timeline.setGroups(this.groups);
     this.timeline.setItems(this.data);
   }
 
   getTimelineGroups() {
-    // create groups
+    // GROUPS SATIRLARI TEMSİL EDİYOR
     this.groups = new DataSet([
-      { id: 1, content: 'Truck&nbsp;1' },
-      { id: 2, content: 'Truck&nbsp;2' },
-      { id: 3, content: 'Truck&nbsp;3' },
-      { id: 4, content: 'Truck&nbsp;4' }
+      { id: 1, content: '1.Grup' },
+      { id: 2, content: '2.Grup' },
+      { id: 3, content: '3.Grup' },
+      { id: 4, content: '4.Grup' }
     ]);
   }
 
   getTimelineData() {
-    // Create a DataSet (allows two way data-binding)
-    // create items
+    // this.data TİMELİNE IN İÇİNİ DOLDURUR
+    // 
     this.data = new DataSet();
     var count = 100;
     var order = 1;
@@ -61,6 +61,7 @@ export class AppComponent implements OnInit {
         this.data.add({
           id: order,
           group: truck,
+          editable: { updateTime: true, updateGroup: false },
           start: start,
           end: end,
           content: 'Order ' + order
@@ -74,7 +75,6 @@ export class AppComponent implements OnInit {
 
   getOptions() {
     this.options = {
-      stack: false,
       start: new Date(),
       end: new Date(1000 * 60 * 60 * 24 + (new Date()).valueOf()),
       editable: true,
@@ -82,8 +82,31 @@ export class AppComponent implements OnInit {
         item: 10, // minimal margin between items
         axis: 5   // minimal margin between items and the axis
       },
-      orientation: 'top'
+      orientation: 'top',
+      onAdd(item: any, callback: any) {
+        
+        console.log("itemneymiş",item,"callbackneymis",callback)
+      },
     };
+
   }
 
 }
+
+function prettyPrompt(title: any, text: any, inputValue: any, callback: any) {
+  swal(
+    {
+      title: title,
+      text: text,
+      type: "input",
+      showCancelButton: true,
+      inputValue: inputValue,
+    },
+    callback
+  );
+}
+
+function swal(arg0: { title: any; text: any; type: string; showCancelButton: boolean; inputValue: any; }, callback: any) {
+  throw new Error("Function not implemented.");
+}
+
