@@ -1,2 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~vis-timeline/dist/vis-timeline-graph2d.min.css';
+@import "primeng/resources/themes/vela-orange/theme.css";
+@import "primeng/resources/primeng.css";

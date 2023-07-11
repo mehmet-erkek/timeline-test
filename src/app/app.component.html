@@ -1,14 +1,57 @@
 <h1>vis-timeline</h1>
-<div id="visualization" #timeline></div>
 
 
-<p style="max-width: 800px">
-    This example shows how to use callback functions <code>onAdd</code>,
-    <code>onMove</code>, <code>onMoving</code>, <code>onUpdate</code>, and
-    <code>onRemove</code>. The <code>onMoving</code> function updates an item
-    while dragging, and can be used to prevent the item from being drawn at
-    disallowed or infeasible timeslots. In this example, the items cannot be moved
-    outside of the month April 2013. The other callback functions are called after
-    an add, move, update, or remove action has taken place, and can be used to
-    cancel these actions.
-  </p>
+<p-panel header="Header">
+  <div id="visualization" #timeline></div>
+
+  
+<div *ngIf="addDialog">
+  <p-confirmDialog #add [style]="{width: '50vw'}">
+
+    <ng-template pTemplate="header">
+      Yeni Ekle
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+
+      <div class="field grid mb-2">
+        <input id="addInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="addInput" />
+      </div>
+
+      <div class="field grid mb-2">
+        <button type="button" pButton icon="pi pi-times" label="İptal" (click)="add.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Evet" (click)="add.accept()"></button>
+      </div>
+    </ng-template>
+
+  </p-confirmDialog>
+</div>
+
+<div *ngIf="updDialog">
+  <p-confirmDialog #upd [style]="{width: '50vw'}">
+
+    <ng-template pTemplate="header">
+      Güncelle
+    </ng-template>
+
+
+    <ng-template pTemplate="footer">
+
+      <div class="field grid mb-2">
+        <input id="updateInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="updateInput" />
+      </div>
+
+      <div class="field grid mb-2">
+        <button type="button" pButton icon="pi pi-times" label="İptal" (click)="upd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="Evet" (click)="upd.accept()"></button>
+      </div>
+
+    </ng-template>
+
+  </p-confirmDialog>
+</div>
+
+</p-panel>
+
+<p-toast></p-toast>
+

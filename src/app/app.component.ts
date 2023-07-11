@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { ElementRef } from '@angular/core';
 import { Timeline } from 'vis-timeline';
 import { DataSet } from "vis-data";
+import { ConfirmEventType, ConfirmationService, MessageService } from "primeng/api";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,10 +15,15 @@ export class AppComponent implements OnInit {
   options!: {};
   data: any;
   groups: any;
+  addInput: string = ""
+  updateInput: string = ""
+
+  addDialog: boolean = false
+  updDialog: boolean = false;
 
   @ViewChild('timeline', { static: true }) timelineContainer!: ElementRef;
 
-  constructor() {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {
     this.getTimelineData();
     this.getTimelineGroups();
     this.getOptions();
@@ -26,6 +33,7 @@ export class AppComponent implements OnInit {
     this.timeline = new Timeline(this.timelineContainer.nativeElement, this.data, this.groups, this.options);
     this.timeline.setGroups(this.groups);
     this.timeline.setItems(this.data);
+
   }
 
   getTimelineGroups() {
@@ -83,30 +91,82 @@ export class AppComponent implements OnInit {
         axis: 5   // minimal margin between items and the axis
       },
       orientation: 'top',
-      onAdd(item: any, callback: any) {
-        
-        console.log("itemneymiş",item,"callbackneymis",callback)
+      onAdd: (item: any, callback: any) => {
+
+        this.addDialog = true
+
+        this.confirmationService.confirm({
+          message: 'Enter text content for new item:',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+
+            console.log("onMove Item :", item, "onMove Callback", callback)
+            item.content = this.addInput
+            callback(item);
+            this.addDialog = false
+          },
+          reject: (type: ConfirmEventType) => {
+            switch (type) {
+              case ConfirmEventType.REJECT:
+                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                this.addDialog = false
+                break;
+              case ConfirmEventType.CANCEL:
+                this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                this.addDialog = false
+                break;
+            }
+          }
+        });
+
       },
+      onMove: (item: any, callback: any) => {
+        console.log("onMove Item :", item, "onMove Callback", callback)
+        callback(item);
+      },
+      onMoving: (item: any, callback: any) => {
+        console.log("onMoving Item :", item, "onMoving Callback", callback)
+        callback(item);
+      },
+      onUpdate: (item: any, callback: any) => {
+
+        this.updateInput = item.content
+        this.updDialog = true
+
+        this.confirmationService.confirm({
+          message: 'Enter text content for new item:',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+
+            console.log("onUpdate Item :", item, "onUpdate Callback", callback)
+            item.content = this.updateInput
+            callback(item);
+            this.updDialog = false
+          },
+          reject: (type: ConfirmEventType) => {
+            switch (type) {
+              case ConfirmEventType.REJECT:
+                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                this.updDialog = false
+                break;
+              case ConfirmEventType.CANCEL:
+                this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                this.updDialog = false
+                break;
+            }
+          }
+        });
+      },
+      onRemove: (item: any, callback: any) => {
+
+        console.log("onRemove Item :", item, "onRemove Callback", callback)
+        callback(item);
+      }
     };
 
   }
 
-}
-
-function prettyPrompt(title: any, text: any, inputValue: any, callback: any) {
-  swal(
-    {
-      title: title,
-      text: text,
-      type: "input",
-      showCancelButton: true,
-      inputValue: inputValue,
-    },
-    callback
-  );
-}
-
-function swal(arg0: { title: any; text: any; type: string; showCancelButton: boolean; inputValue: any; }, callback: any) {
-  throw new Error("Function not implemented.");
 }
 
