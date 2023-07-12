@@ -16,10 +16,19 @@ export class AppComponent implements OnInit {
   data: any;
   groups: any;
   addInput: string = ""
+  addStart?: Date
+  addEnd  ?: Date
   updateInput: string = ""
+  updateStart?: Date
+  updateEnd  ?: Date
 
   addDialog: boolean = false
+  addItemObj !: any;
+  addCallback !: any;
+
   updDialog: boolean = false;
+  updItemObj !: any;
+  updCallback !: any;
 
   @ViewChild('timeline', { static: true }) timelineContainer!: ElementRef;
 
@@ -31,6 +40,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.timeline = new Timeline(this.timelineContainer.nativeElement, this.data, this.groups, this.options);
+    console.log(this.data)
     this.timeline.setGroups(this.groups);
     this.timeline.setItems(this.data);
 
@@ -79,7 +89,10 @@ export class AppComponent implements OnInit {
       }
       truck++;
     }
+
+    console.log(this.data)
   }
+
 
   getOptions() {
     this.options = {
@@ -91,39 +104,24 @@ export class AppComponent implements OnInit {
         axis: 5   // minimal margin between items and the axis
       },
       orientation: 'top',
+
+
       onAdd: (item: any, callback: any) => {
-
         this.addDialog = true
+        this.addCallback = callback
+        console.log("onAdd Item :", item, "onAdd Callback", callback)
+        item.content = this.addInput
+        this.addStart = item.start
+        this.addItemObj = item
+        // callback(item);
 
-        this.confirmationService.confirm({
-          message: 'Enter text content for new item:',
-          icon: 'pi pi-exclamation-triangle',
-          accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
 
-            console.log("onMove Item :", item, "onMove Callback", callback)
-            item.content = this.addInput
-            callback(item);
-            this.addDialog = false
-          },
-          reject: (type: ConfirmEventType) => {
-            switch (type) {
-              case ConfirmEventType.REJECT:
-                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-                this.addDialog = false
-                break;
-              case ConfirmEventType.CANCEL:
-                this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
-                this.addDialog = false
-                break;
-            }
-          }
-        });
 
       },
       onMove: (item: any, callback: any) => {
         console.log("onMove Item :", item, "onMove Callback", callback)
         callback(item);
+       
       },
       onMoving: (item: any, callback: any) => {
         console.log("onMoving Item :", item, "onMoving Callback", callback)
@@ -132,32 +130,17 @@ export class AppComponent implements OnInit {
       onUpdate: (item: any, callback: any) => {
 
         this.updateInput = item.content
+        this.updateStart = item.start
+        this.updateEnd = item.end
         this.updDialog = true
 
-        this.confirmationService.confirm({
-          message: 'Enter text content for new item:',
-          icon: 'pi pi-exclamation-triangle',
-          accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+        this.updItemObj = item
+        this.updCallback = callback
+        console.log("onUpdate Item :", item, "onUpdate Callback", callback)
+        item.content = this.updateInput
 
-            console.log("onUpdate Item :", item, "onUpdate Callback", callback)
-            item.content = this.updateInput
-            callback(item);
-            this.updDialog = false
-          },
-          reject: (type: ConfirmEventType) => {
-            switch (type) {
-              case ConfirmEventType.REJECT:
-                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-                this.updDialog = false
-                break;
-              case ConfirmEventType.CANCEL:
-                this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
-                this.updDialog = false
-                break;
-            }
-          }
-        });
+       // callback(item);
+
       },
       onRemove: (item: any, callback: any) => {
 
@@ -168,5 +151,24 @@ export class AppComponent implements OnInit {
 
   }
 
+  addClick() {
+    
+    this.addItemObj.content = this.addInput
+    this.addItemObj.start = this.addStart
+    this.addItemObj.end = this.addEnd
+    this.addCallback(this.addItemObj)
+    console.log('Ha burdayım!!', this.addItemObj)
+    this.addDialog = false
+  }
+
+  updClick() {
+    
+    this.updItemObj.content = this.updateInput
+    this.updItemObj.start = this.updateStart
+    this.updItemObj.end = this.updateEnd
+    this.updCallback(this.updItemObj)
+    console.log('Ha burdayım!!', this.updItemObj)
+    this.addDialog = false
+  }
 }
 

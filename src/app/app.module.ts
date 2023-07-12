@@ -11,6 +11,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     DialogModule,
     ButtonModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    SidebarModule
   ],
   providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
