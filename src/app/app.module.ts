@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { SidebarModule } from 'primeng/sidebar';
+import { CalendarModule } from 'primeng/calendar';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +29,8 @@ import { SidebarModule } from 'primeng/sidebar';
     ButtonModule,
     InputTextModule,
     FormsModule,
-    SidebarModule
+    SidebarModule,
+    CalendarModule
   ],
   providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]

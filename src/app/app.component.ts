@@ -12,14 +12,20 @@ import { ConfirmEventType, ConfirmationService, MessageService } from "primeng/a
 })
 export class AppComponent implements OnInit {
   timeline?: Timeline;
+
+  selectedDate!: Date
+  today: Date = new Date()
+
   options!: {};
   data: any;
   groups: any;
+
   addInput: string = ""
-  addStart?: Date
-  addEnd  ?: Date
+  addStart: Date = new Date()
+  addEnd  ?: Date | null
+
   updateInput: string = ""
-  updateStart?: Date
+  updateStart: Date = new Date()
   updateEnd  ?: Date
 
   addDialog: boolean = false
@@ -151,12 +157,20 @@ export class AppComponent implements OnInit {
 
   }
 
+  cancelClick(){
+    this.addStart == null
+    this.addEnd == null
+    this.addInput == ""
+  }
+
   addClick() {
     
     this.addItemObj.content = this.addInput
     this.addItemObj.start = this.addStart
     this.addItemObj.end = this.addEnd
+    
     this.addCallback(this.addItemObj)
+    console.log('Ha burdayım!!', this.addStart)
     console.log('Ha burdayım!!', this.addItemObj)
     this.addDialog = false
   }
@@ -166,9 +180,34 @@ export class AppComponent implements OnInit {
     this.updItemObj.content = this.updateInput
     this.updItemObj.start = this.updateStart
     this.updItemObj.end = this.updateEnd
+
     this.updCallback(this.updItemObj)
     console.log('Ha burdayım!!', this.updItemObj)
-    this.addDialog = false
+    this.updDialog = false
+  }
+
+  onSelectMethod(){
+    if(this.addDialog){
+
+      this.today = this.addItemObj.start == undefined ? new Date() : this.addStart;
+      console.log(this.today)
+    }
+    else {
+      this.today = this.updItemObj.start == undefined ? new Date() :this.updateStart
+      console.log(this.today)
+    }
+  }
+  onSelectMethodEnd(){
+    if(this.addDialog){
+
+      this.selectedDate = this.addItemObj.end == undefined ? new Date() : this.addItemObj.end 
+      console.log(this.selectedDate)
+    }
+    else {
+
+      this.selectedDate == this.updItemObj.end == undefined ? new Date() : this.updItemObj.end
+      console.log(this.selectedDate)
+    }
   }
 }
 

@@ -21,15 +21,18 @@
       <div class="field grid mb-2">
         <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
         <div class="col-12 md:col-9">
-          <input id="addStart" type="text" class="w-full" name="address" pInputText
-            [(ngModel)]="addStart" />
+         <!-- <input id="addStart" type="text" class="w-full" name="address" pInputText
+            [(ngModel)]="addStart" />-->
+            <p-calendar [(ngModel)]="addStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [maxDate]="selectedDate" (onSelect)="onSelectMethod()"></p-calendar>
         </div>
       </div>
       <div class="field grid mb-2">
         <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
         <div class="col-12 md:col-9">
-          <input id="addEnd" type="text" class="w-full" name="address" pInputText
-            [(ngModel)]="addEnd" />
+          <!--<input id="addEnd" type="text" class="w-full" name="address" pInputText
+            [(ngModel)]="addEnd" />-->
+            
+            <p-calendar [(ngModel)]="addEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [minDate]="today" (onSelect)="onSelectMethodEnd()"></p-calendar>
         </div>
       </div>
       <div class="field grid mb-2">
@@ -49,7 +52,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm"></button>
+      <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm" (click)="cancelClick()"></button>
       <button pButton pRipple label="Kaydet" icon="pi pi-check" class="p-button-text" styleClass="p-button-sm" (click)="addClick()"></button>
     </ng-template>
     
@@ -65,17 +68,20 @@
     </div>
   </div>
   <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">İşletme adresi :</label>
+    <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
     <div class="col-12 md:col-9">
-      <input id="updateStart" type="text" class="w-full" name="address" pInputText
-        [(ngModel)]="updateStart" />
+      <!--<input id="updateStart" type="text" class="w-full" name="address" pInputText
+        [(ngModel)]="updateStart" />-->
+        <p-calendar [(ngModel)]="updateStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"  [maxDate]="selectedDate" (onSelect)="onSelectMethod()" ></p-calendar>
+
     </div>
   </div>
   <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">Kurulum tarihi :</label>
+    <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
     <div class="col-12 md:col-9">
-      <input id="updateEnd" type="text" class="w-full" name="address" pInputText
-        [(ngModel)]="updateEnd" />
+      <!--<input id="updateEnd" type="text" class="w-full" name="address" pInputText
+        [(ngModel)]="updateEnd" />-->
+        <p-calendar [(ngModel)]="updateEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"  [minDate]="today" (onSelect)="onSelectMethodEnd()"></p-calendar>
     </div>
   </div>
   <div class="field grid mb-2">
