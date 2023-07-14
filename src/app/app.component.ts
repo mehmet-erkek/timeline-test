@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
 
   addInput: string = ""
   addStart: Date = new Date()
-  addEnd  ?: Date | null
+  addEnd?: Date | null
 
   updateInput: string = ""
   updateStart: Date = new Date()
-  updateEnd  ?: Date
+  updateEnd?: Date
 
   addDialog: boolean = false
   addItemObj !: any;
@@ -121,17 +121,23 @@ export class AppComponent implements OnInit {
         this.addItemObj = item
         // callback(item);
 
-
-
       },
       onMove: (item: any, callback: any) => {
         console.log("onMove Item :", item, "onMove Callback", callback)
-        callback(item);
-       
-      },
-      onMoving: (item: any, callback: any) => {
-        console.log("onMoving Item :", item, "onMoving Callback", callback)
-        callback(item);
+
+        this.confirmationService.confirm({
+          message: item.content + ' objesinin değişikliğini onaylıyor musunuz?',
+          header: 'Uyarı',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Başarılı', detail: 'İşlem başarılı' });
+            callback(item);
+          },
+          reject: () => {
+            callback(null)
+          }
+        });
+
       },
       onUpdate: (item: any, callback: any) => {
 
@@ -139,36 +145,47 @@ export class AppComponent implements OnInit {
         this.updateStart = item.start
         this.updateEnd = item.end
         this.updDialog = true
-
+        
         this.updItemObj = item
         this.updCallback = callback
         console.log("onUpdate Item :", item, "onUpdate Callback", callback)
         item.content = this.updateInput
 
-       // callback(item);
-
+        // callback(item);
       },
       onRemove: (item: any, callback: any) => {
 
         console.log("onRemove Item :", item, "onRemove Callback", callback)
-        callback(item);
+        this.confirmationService.confirm({
+          message: item.content + ' objesinin silinmesini onaylıyor musunuz?',
+          header: 'Uyarı',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Başarılı', detail: 'İşlem başarılı' });
+            callback(item);
+          },
+          reject: () => {
+            callback(null)
+          }
+        });
+
       }
     };
 
   }
 
-  cancelClick(){
+  cancelClick() {
     this.addStart == null
     this.addEnd == null
     this.addInput == ""
   }
 
   addClick() {
-    
+
     this.addItemObj.content = this.addInput
     this.addItemObj.start = this.addStart
     this.addItemObj.end = this.addEnd
-    
+
     this.addCallback(this.addItemObj)
     console.log('Ha burdayım!!', this.addStart)
     console.log('Ha burdayım!!', this.addItemObj)
@@ -176,7 +193,7 @@ export class AppComponent implements OnInit {
   }
 
   updClick() {
-    
+
     this.updItemObj.content = this.updateInput
     this.updItemObj.start = this.updateStart
     this.updItemObj.end = this.updateEnd
@@ -186,21 +203,21 @@ export class AppComponent implements OnInit {
     this.updDialog = false
   }
 
-  onSelectMethod(){
-    if(this.addDialog){
+  onSelectMethod() {
+    if (this.addDialog) {
 
       this.today = this.addItemObj.start == undefined ? new Date() : this.addStart;
       console.log(this.today)
     }
     else {
-      this.today = this.updItemObj.start == undefined ? new Date() :this.updateStart
+      this.today = this.updItemObj.start == undefined ? new Date() : this.updateStart
       console.log(this.today)
     }
   }
-  onSelectMethodEnd(){
-    if(this.addDialog){
+  onSelectMethodEnd() {
+    if (this.addDialog) {
 
-      this.selectedDate = this.addItemObj.end == undefined ? new Date() : this.addItemObj.end 
+      this.selectedDate = this.addItemObj.end == undefined ? new Date() : this.addItemObj.end
       console.log(this.selectedDate)
     }
     else {

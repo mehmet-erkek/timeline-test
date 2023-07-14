@@ -6,103 +6,106 @@
 </p-panel>
 
 <p-toast></p-toast>
-
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Evet" rejectLabel="Hayır"></p-confirmDialog>
 
 
 <p-dialog header="Ekle" [(visible)]="addDialog" [modal]="true" [style]="{ width: '550px' }" [draggable]="false"
-    [resizable]="false">
-    <ng-template pTemplate="content">
-      <div class="field grid mb-2">
-        <label class="col-12 mb-2 md:col-3 md:mb-0">Content :</label>
-        <div class="col-12 md:col-9">
-          <input id="addInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="addInput" />
-        </div>
+  [resizable]="false">
+  <ng-template pTemplate="content">
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">Content :</label>
+      <div class="col-12 md:col-9">
+        <input id="addInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="addInput" />
       </div>
-      <div class="field grid mb-2">
-        <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
-        <div class="col-12 md:col-9">
-         <!-- <input id="addStart" type="text" class="w-full" name="address" pInputText
+    </div>
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
+      <div class="col-12 md:col-9">
+        <!-- <input id="addStart" type="text" class="w-full" name="address" pInputText
             [(ngModel)]="addStart" />-->
-            <p-calendar [(ngModel)]="addStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [maxDate]="selectedDate" (onSelect)="onSelectMethod()"></p-calendar>
-        </div>
+        <p-calendar [(ngModel)]="addStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"
+          [maxDate]="selectedDate" (onSelect)="onSelectMethod()"></p-calendar>
       </div>
-      <div class="field grid mb-2">
-        <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
-        <div class="col-12 md:col-9">
-          <!--<input id="addEnd" type="text" class="w-full" name="address" pInputText
+    </div>
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
+      <div class="col-12 md:col-9">
+        <!--<input id="addEnd" type="text" class="w-full" name="address" pInputText
             [(ngModel)]="addEnd" />-->
-            
-            <p-calendar [(ngModel)]="addEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [minDate]="today" (onSelect)="onSelectMethodEnd()"></p-calendar>
-        </div>
-      </div>
-      <div class="field grid mb-2">
-        <label class="col-12 mb-2 md:col-3 md:mb-0">1 Deger :</label>
-        <div class="col-12 md:col-9">
-          <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText
-            [(ngModel)]="updateInput" />
-        </div>
-      </div>
-      <div class="field grid mb-2">
-        <label class="col-12 mb-2 md:col-3 md:mb-0">1 Deger :</label>
-        <div class="col-12 md:col-9">
-          <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText
-            [(ngModel)]="updateInput" />
-        </div>
-      </div>
-    </ng-template>
 
-    <ng-template pTemplate="footer">
-      <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm" (click)="cancelClick()"></button>
-      <button pButton pRipple label="Kaydet" icon="pi pi-check" class="p-button-text" styleClass="p-button-sm" (click)="addClick()"></button>
-    </ng-template>
-    
-  </p-dialog>
-  
+        <p-calendar [(ngModel)]="addEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [minDate]="today"
+          (onSelect)="onSelectMethodEnd()"></p-calendar>
+      </div>
+    </div>
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">1 Deger :</label>
+      <div class="col-12 md:col-9">
+        <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText [(ngModel)]="updateInput" />
+      </div>
+    </div>
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">1 Deger :</label>
+      <div class="col-12 md:col-9">
+        <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText [(ngModel)]="updateInput" />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm"
+      (click)="cancelClick()"></button>
+    <button pButton pRipple label="Kaydet" icon="pi pi-check" class="p-button-text" styleClass="p-button-sm"
+      (click)="addClick()"></button>
+  </ng-template>
+
+</p-dialog>
+
 <p-dialog header="Güncelle" [(visible)]="updDialog" [modal]="true" [style]="{ width: '550px' }" [draggable]="false"
-[resizable]="false">
-<ng-template pTemplate="content">
-  <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">İşletme adı :</label>
-    <div class="col-12 md:col-9">
-      <input id="updateInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="updateInput" />
+  [resizable]="false">
+  <ng-template pTemplate="content">
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">İşletme adı :</label>
+      <div class="col-12 md:col-9">
+        <input id="updateInput" type="text" class="w-full" name="name" pInputText [(ngModel)]="updateInput" />
+      </div>
     </div>
-  </div>
-  <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
-    <div class="col-12 md:col-9">
-      <!--<input id="updateStart" type="text" class="w-full" name="address" pInputText
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">Start :</label>
+      <div class="col-12 md:col-9">
+        <!--<input id="updateStart" type="text" class="w-full" name="address" pInputText
         [(ngModel)]="updateStart" />-->
-        <p-calendar [(ngModel)]="updateStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"  [maxDate]="selectedDate" (onSelect)="onSelectMethod()" ></p-calendar>
+        <p-calendar [(ngModel)]="updateStart" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"
+          [maxDate]="selectedDate" (onSelect)="onSelectMethod()"></p-calendar>
 
+      </div>
     </div>
-  </div>
-  <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
-    <div class="col-12 md:col-9">
-      <!--<input id="updateEnd" type="text" class="w-full" name="address" pInputText
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">End :</label>
+      <div class="col-12 md:col-9">
+        <!--<input id="updateEnd" type="text" class="w-full" name="address" pInputText
         [(ngModel)]="updateEnd" />-->
-        <p-calendar [(ngModel)]="updateEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'"  [minDate]="today" (onSelect)="onSelectMethodEnd()"></p-calendar>
+        <p-calendar [(ngModel)]="updateEnd" [showTime]="true" [showSeconds]="true" [appendTo]="'body'" [minDate]="today"
+          (onSelect)="onSelectMethodEnd()"></p-calendar>
+      </div>
     </div>
-  </div>
-  <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">Kurulum tarihi :</label>
-    <div class="col-12 md:col-9">
-      <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText
-        [(ngModel)]="updateInput" />
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">Kurulum tarihi :</label>
+      <div class="col-12 md:col-9">
+        <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText [(ngModel)]="updateInput" />
+      </div>
     </div>
-  </div>
-  <div class="field grid mb-2">
-    <label class="col-12 mb-2 md:col-3 md:mb-0">Kurulum tarihi :</label>
-    <div class="col-12 md:col-9">
-      <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText
-        [(ngModel)]="updateInput" />
+    <div class="field grid mb-2">
+      <label class="col-12 mb-2 md:col-3 md:mb-0">Kurulum tarihi :</label>
+      <div class="col-12 md:col-9">
+        <input id="enterpriseAddress" type="text" class="w-full" name="address" pInputText [(ngModel)]="updateInput" />
+      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
 
-<ng-template pTemplate="footer">
-  <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm"></button>
-  <button pButton pRipple label="Kaydet" icon="pi pi-check" class="p-button-text" styleClass="p-button-sm" (click)="updClick()"></button>
-</ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="İptal" icon="pi pi-times" class="p-button-text" styleClass="p-button-sm"></button>
+    <button pButton pRipple label="Kaydet" icon="pi pi-check" class="p-button-text" styleClass="p-button-sm"
+      (click)="updClick()"></button>
+  </ng-template>
 
 </p-dialog>
