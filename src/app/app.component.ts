@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   addEnd?: Date | null
 
   updateInput: string = ""
+  degisken : string = ""
+  degisken2 : string = ""
   updateStart: Date = new Date()
   updateEnd?: Date
 
@@ -145,13 +147,17 @@ export class AppComponent implements OnInit {
         this.updateStart = item.start
         this.updateEnd = item.end
         this.updDialog = true
-        
+
         this.updItemObj = item
         this.updCallback = callback
         console.log("onUpdate Item :", item, "onUpdate Callback", callback)
         item.content = this.updateInput
 
         // callback(item);
+      },
+      onDropObjectOnItem: (objectData: any, item:any) => {
+        console.log('objectData', objectData)
+        console.log('item',item)
       },
       onRemove: (item: any, callback: any) => {
 
@@ -188,7 +194,7 @@ export class AppComponent implements OnInit {
 
     this.addCallback(this.addItemObj)
     console.log('Ha burdayım!!', this.addStart)
-    console.log('Ha burdayım!!', this.addItemObj)
+    console.log('Ha itemobjedeyim!!', this.addItemObj)
     this.addDialog = false
   }
 
@@ -199,7 +205,7 @@ export class AppComponent implements OnInit {
     this.updItemObj.end = this.updateEnd
 
     this.updCallback(this.updItemObj)
-    console.log('Ha burdayım!!', this.updItemObj)
+    console.log('Ha updatedeyim!!', this.updItemObj)
     this.updDialog = false
   }
 
