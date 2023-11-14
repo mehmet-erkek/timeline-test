@@ -155,10 +155,10 @@ export class AppComponent implements OnInit {
 
         // callback(item);
       },
-      onDropObjectOnItem: (objectData: any, item:any) => {
+    /*  onDropObjectOnItem: (objectData: any, item:any) => {
         console.log('objectData', objectData)
         console.log('item',item)
-      },
+      },*/
       onRemove: (item: any, callback: any) => {
 
         console.log("onRemove Item :", item, "onRemove Callback", callback)
