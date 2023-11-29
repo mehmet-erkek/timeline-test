@@ -4,6 +4,21 @@ import { ElementRef } from '@angular/core';
 import { Timeline } from 'vis-timeline';
 import { DataSet } from "vis-data";
 import { ConfirmEventType, ConfirmationService, MessageService } from "primeng/api";
+import { driver } from "driver.js";
+const driverObj = driver({
+  nextBtnText: 'İleri',
+  prevBtnText: 'Geri',
+  doneBtnText: 'Kapat',
+  showProgress: true,
+ // allowClose: false,
+  steps: [
+    { element: 'primaryCard', popover: { title: 'Animated Tour Example', description: 'Here is the code example showing animated tour. Let\'s walk you through it.', side: "right", align: 'start' }},
+    { element: 'visualization', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "bottom", align: 'start' }},
+    { element: 'head', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "bottom", align: 'start' }},
+    { element: 'visualization', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "bottom", align: 'start' }},
+    { element: 'head', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "bottom", align: 'start' }},
+  ]
+});
 
 @Component({
   selector: 'app-root',
@@ -232,5 +247,10 @@ export class AppComponent implements OnInit {
       console.log(this.selectedDate)
     }
   }
-}
 
+
+  driverClick(){
+    driverObj.drive();
+    console.log(driverObj)
+  }
+}
