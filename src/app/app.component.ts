@@ -10,13 +10,14 @@ const driverObj = driver({
   prevBtnText: 'Geri',
   doneBtnText: 'Kapat',
   showProgress: true,
+  allowClose: false,
+  popoverClass: 'driverjs-theme',
  // allowClose: false,
   steps: [
-    { element: 'primaryCard', popover: { title: 'Animated Tour Example', description: 'Here is the code example showing animated tour. Let\'s walk you through it.', side: "right", align: 'start' }},
-    { element: 'visualization', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "bottom", align: 'start' }},
-    { element: 'head', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "bottom", align: 'start' }},
-    { element: 'visualization', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "bottom", align: 'start' }},
-    { element: 'head', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "bottom", align: 'start' }},
+    { element: '#primaryCard', popover: { title: 'BUTONA BASTIN!', description: 'Bu ne demek biliyor ne demek biliyorne demek biliyorne demek biliyorne demek biliyorne demek biliyor musun ?', }},
+    { element: '#primaryCardx', popover: { title: 'İŞLER KÖTÜYE GİDİYOR!!', description: 'Eğlenceli bir yolculuğa çıkartacağım :)))))',}},
+    { element: '#x', popover: { title: 'BURAYA İYİ ODAKLAN', description: 'Söylediklerimi bir yere not al',  }},
+    { element: '#visualization', popover: { title: 'YAZ!', description: 'KAHVENİ İÇMEYİ UNUTMA.', side: "bottom", align: 'start' }},
   ]
 });
 

@@ -5,3 +5,67 @@
 @import "primeicons/primeicons.css";
 @import "../node_modules/primeflex/primeflex.min.css";
 @import "../node_modules/driver.js/dist/driver.css";
+
+
+.driver-popover.driverjs-theme {
+    background-color: #345e98d9;
+    color: #ffffff;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+    font-size: 20px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title,
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+    color: #000000;
+}
+
+.driver-popover.driverjs-theme button {
+    flex: 1;
+    text-align: center;
+    background-color: #ffffffb1;
+    color: #000000;
+    border: 2px solid #345e98e7;
+    text-shadow: none;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 6px;
+}
+
+.driver-popover.driverjs-theme button:hover {
+    background-color: #5780b8d8;
+    color: #ffffff;
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+    flex: 1;
+    justify-content: flex-end;
+    margin-left: 2rem;
+    gap: 5px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+    color: #9b9b9b;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+    color: #000;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+    border-left-color: rgb(87, 128, 184);
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+    border-right-color: #5780b8d8;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+    border-top-color: rgb(87, 128, 184);
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+    border-bottom-color: rgb(87, 128, 184);
+}
